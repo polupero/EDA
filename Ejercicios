@@ -1,0 +1,61 @@
+package eda;
+
+/**
+ *
+ * @author Hagen
+ */
+public class Ejercicios {
+    
+    //Escriba un método que dada una cadena de n caracteres escriba la n! 
+    //permutaciones de sus elementos
+    public void anagrama(String palabra){
+        anagrama(palabra, "");
+    }
+    
+    public void anagrama(String palabra1, String palabra2){
+        char c;
+        String resto;
+        if(palabra1.length()==0){
+            System.out.println(palabra2);
+        }
+        else{
+            for(int i=0;i<palabra1.length();i++){
+                c=palabra1.charAt(i);
+                resto=palabra1.substring(0,i)+palabra1.substring(i+1);
+                anagrama(resto, c+palabra2);
+            }
+        }
+}
+    
+    //Dadas 2 cadenas de S1 y S2, calcula su distancia en cuanto al número de 
+    //operaciones que toma convertir S1 en S2. Las operaciones son:
+    //Substitución, remoción y adición
+    public int Distancia(String s1, String s2){
+    int i=0, j=0, k=s1.length(), l=0;
+    return Distancia1(s1.substring(i), s2.substring(j), i+1, j+1, k, l);
+    }
+    
+    public int Distancia1(String s1, String s2, int i, int j, int k, int l){
+    if(i==k){
+        return l;
+    }
+    else{
+        char a=s1.charAt(i);
+        char b=s2.charAt(j);
+        if(a==b){
+            i++;
+            j++;
+            return Distancia1(s1.substring(i), s2.substring(j), i+1, j+1, k, l);
+        }
+        if(a!=b){
+            
+            return 0;
+        }
+        }
+    }
+    
+    public static void main(String[] args) {
+        Ejercicios a=new Ejercicios();
+        a.anagrama("abc");
+    }
+}
